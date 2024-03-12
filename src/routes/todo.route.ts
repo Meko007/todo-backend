@@ -3,20 +3,20 @@ import {
 	createTodo,
 	getTodos,
 	getTodoById,
+	updateTodo,
 	deleteTodo,
 } from '../controllers/todo.controller';
 import { verifyToken } from '../middleware/auth';
 
 const router = Router();
 
-router.use(verifyToken);
-
 router.route('/todos')
-	.post(createTodo)
-	.get(getTodos);
+	.post(verifyToken, createTodo)
+	.get(verifyToken, getTodos);
 
 router.route('/todos/:id')
-	.get(getTodoById)
-	.delete(deleteTodo);
+	.get(verifyToken, getTodoById)
+	.put(verifyToken, updateTodo)
+	.delete(verifyToken, deleteTodo);
 
 export default router;

@@ -57,9 +57,7 @@ export const Todo = conn.define<ITodo>('Todo', {
 	},
 });
 
-User.hasMany(Todo, {
-	foreignKey: 'userId',
-});
+User.hasMany(Todo);
 
 Todo.belongsTo(User);
 
