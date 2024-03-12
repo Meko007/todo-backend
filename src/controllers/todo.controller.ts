@@ -10,8 +10,8 @@ export const createTodo = async (req: Request, res: Response) => {
 		const { task, priority, expectedEndDate } = req.body;
 
 		if (expectedEndDate && new Date(expectedEndDate) < new Date()) {
-            return res.status(422).json({ message: 'Expected end date cannot be in the past' });
-        }
+			return res.status(422).json({ message: 'Expected end date cannot be in the past' });
+		}
 
 		const newTodo = await Todo.create({
 			UserId: userId,
